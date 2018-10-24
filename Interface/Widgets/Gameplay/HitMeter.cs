@@ -110,7 +110,7 @@ namespace YAVSRG.Interface.Widgets.Gameplay
             float c = bounds.CenterX;
             foreach (Hit h in hits)
             {
-                SpriteBatch.DrawRect(new Rect(c + h.delta * 4 - 4, bounds.Bottom-40, c + h.delta * 4 + 4, bounds.Bottom), Color.FromArgb(Alpha(now - h.time), Game.Options.Theme.JudgeColors[h.tier]));
+                SpriteBatch.DrawRect(new Rect(c + h.delta * 4 - 4 * (Game.Instance.Width / 1920), bounds.Bottom-40, c + h.delta * 4 + 4, bounds.Bottom), Color.FromArgb(Alpha(now - h.time), Game.Options.Theme.JudgeColors[h.tier]));
             }
         }
 

@@ -32,7 +32,7 @@ namespace YAVSRG
         {
             if (dropShadow)
             {
-                DrawText(text, scale, x + scale * ShadowAmount, y + scale * ShadowAmount, Color.FromArgb(color.A, shadowColor), false);
+                DrawText(text, scale, x + scale * ShadowAmount, y + scale * ShadowAmount, Color.FromArgb(color.A, shadowColor.R / 2, shadowColor.G / 2, shadowColor.B / 2), false);
             }
             float start = x;
             scale /= FONTSCALE;
@@ -43,7 +43,7 @@ namespace YAVSRG
                 if (!FontLookup.ContainsKey(c)) { GenChar(c); }
                 s = FontLookup[c];
                 SpriteBatch.Draw(sprite: s, bounds: new Rect(x, y, x + s.Width * scale, y + s.Height * scale), color: color);
-                x += (s.Width - FONTSCALE * 0.5f) * scale; //kerning
+                x += (s.Width - FONTSCALE * 0.5f) * scale; //keming
             }
             return x - start;
         }
@@ -52,7 +52,7 @@ namespace YAVSRG
         {
             if (dropShadow)
             {
-                DrawCentredText(text, scale, x + scale * ShadowAmount, y + scale * ShadowAmount, Color.FromArgb(c.A, shadowColor), false);
+                DrawCentredText(text, scale, x + scale * ShadowAmount, y + scale * ShadowAmount, Color.FromArgb(c.A, shadowColor.R / 2, shadowColor.G / 2, shadowColor.B / 2), false);
             }
             x -= scale / FONTSCALE * 0.5f * MeasureText(text);
             return DrawText(text, scale, x, y, c);
@@ -62,7 +62,7 @@ namespace YAVSRG
         {
             if (dropShadow)
             {
-                DrawJustifiedText(text, scale, x + scale * ShadowAmount, y + scale * ShadowAmount, Color.FromArgb(c.A, shadowColor), false);
+                DrawJustifiedText(text, scale, x + scale * ShadowAmount, y + scale * ShadowAmount, Color.FromArgb(c.A, shadowColor.R / 2, shadowColor.G / 2, shadowColor.B / 2), false);
             }
             x -= scale / FONTSCALE * MeasureText(text);
             return DrawText(text, scale, x, y, c);
