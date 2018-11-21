@@ -19,7 +19,7 @@ namespace YAVSRG.Interface.Screens
         {
             base.OnEnter(prev);
             Game.Screens.Toolbar.SetState(WidgetState.NORMAL);
-            Game.Audio.SetRate(1.0);
+            Game.Audio.SetRate(1.0); 
         }
 
         public override void OnExit(Screen next)

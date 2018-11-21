@@ -77,8 +77,8 @@ namespace YAVSRG.Interface.Screens
                 }
                 level *= 0.15f;
                 level += 10f;
-                r1 = (300 - level * 0.2f) * l;
-                r2 = (300 + level) * l;
+                r1 = 0; // used in calculations for waveform inwards -- it does nothing rn because i tore it out ungracefully
+                r2 = (200 + level) * l; // used in calculations for waveform away diverging from logo
                 a1 = rotate + Math.PI / 192 * i;
                 for (int p = 0; p < 6; p++)
                 {

@@ -78,7 +78,7 @@ namespace YAVSRG.Interface.Screens
         public override void OnEnter(Screen prev)
         {
             base.OnEnter(prev);
-            Game.Audio.OnPlaybackFinish = null;
+            Game.Audio.OnPlaybackFinish = Game.Audio.Stop;
             PacketScoreboard.OnReceive += HandleMultiplayerScoreboard;
         }
 
@@ -86,6 +86,7 @@ namespace YAVSRG.Interface.Screens
         {
             base.OnExit(next);
             PacketScoreboard.OnReceive -= HandleMultiplayerScoreboard;
+            Game.Audio.Play();
         }
 
         public bool ShouldSaveScore()

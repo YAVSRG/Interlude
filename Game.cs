@@ -101,7 +101,7 @@ namespace YAVSRG
             
             var test = new Discord.EventHandlers() { requestCallback = Discord.RichPresence.RequestHandler };
             Discord.Initialize("420320424199716864", ref test, true, "");
-            Utils.SetDiscordData("Just started playing", "Pick a song already!");
+            Utils.SetDiscordData("Just started playing", "Pick a song already!"); // these are cringy blake; i love it
         }
 
         public void ApplyWindowSettings(Options.General settings) //apply video settings

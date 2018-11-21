@@ -34,6 +34,9 @@ namespace YAVSRG.Interface
             AddChild(
                 new Button("buttononline", "Multiplayer", () => { if (!(Game.Screens.Current is ScreenLobby) && !(Game.Screens.Current is ScreenScore)) Game.Screens.AddScreen(new ScreenLobby()); })
                 .PositionTopLeft(400, 0, AnchorType.MAX, AnchorType.MIN).PositionBottomRight(320, 80, AnchorType.MAX, AnchorType.MIN));
+            AddChild(
+                new Button("buttongoals", "Goals", () => { if (!(Game.Screens.Current is ScreenGoals) && !(Game.Screens.Current is ScreenScore)) Game.Screens.AddScreen(new ScreenGoals()); })
+                .PositionTopLeft(480, 0, AnchorType.MAX, AnchorType.MIN).PositionBottomRight(400, 80, AnchorType.MAX, AnchorType.MIN));
             Chat = new ChatBox();
             AddChild(Chat.PositionTopLeft(0, 80, AnchorType.MIN, AnchorType.MAX).PositionBottomRight(0, 80, AnchorType.MAX, AnchorType.MAX));
             AddChild(new TaskDisplay());
@@ -79,6 +82,7 @@ namespace YAVSRG.Interface
             if (_Height > 1)
             {
                 float s = (ScreenHeight * 2 - _Height * 2) / 24f;
+                
                 for (int i = 0; i < 24; i++) //draws the waveform
                 {
                     float level = Game.Audio.WaveForm[i * 4] + Game.Audio.WaveForm[i * 4 + 1] + Game.Audio.WaveForm[i * 4 + 2] + Game.Audio.WaveForm[i * 4 + 3];

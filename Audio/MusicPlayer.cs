@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using ManagedBass;
+using YAVSRG.Charts;
+using YAVSRG.Interface.Screens;
 
 namespace YAVSRG.Audio
 {
@@ -153,13 +155,25 @@ namespace YAVSRG.Audio
                 WaveForm[x] = WaveForm[x] * 0.9f + y * 0.1f; //causes smooth movement of waveform rather than being EXACTLY the amplitudes at this very moment
             }
         }
+        
+        public void EmptyWaveform() // fades waveform out when nothing is playing
+        {
+            for (int x = 0; x < 256; x++)
+            {
+                WaveForm[x] = WaveForm[x] * 0.9f; // 0.9f is how fast it fades out -- this value looks okay.
+            }
+        }
 
         public void Update() //updates the music player every update frame
         {
             float[] temp = new float[256];
-            if (!Paused) //waveform freezes in position when paused
+            if (!Paused) //waveform fades out when nothing is playing
             {
                 UpdateWaveform();
+            }
+            else
+            {
+                EmptyWaveform();
             }
             Level = Level * 0.9f + (Bass.ChannelGetLevelRight(nowplaying) + Bass.ChannelGetLevelLeft(nowplaying)) * 0.0000002f; //overall level/volume of audio
             //it's like a single bar waveform (should probably be moved to UpdateWaveform()
@@ -173,7 +187,10 @@ namespace YAVSRG.Audio
             {
                 if (OnPlaybackFinish != null)
                 {
-                    OnPlaybackFinish(); //this is can restart the song from the beginning, select another song at random, etc
+                    if (!(Game.Screens.Current is ScreenPlay) && !(Game.Screens.Current is ScreenLevelSelect) && !(Game.Screens.Current is ScreenScore)) // screens that you don't want the music to change on
+                        NextTrack();
+
+                    OnPlaybackFinish(); //manages anything that isn't the next track (this was better than adding the NextTrack code to every screen that would call it
                 }
                 else if (!LeadingIn) { LeadingIn = true; } //if not assigned the timer will just keep running (used in gameplay)
             }
@@ -185,6 +202,26 @@ namespace YAVSRG.Audio
             //if (t.ID == 0) return;
             nowplaying?.Dispose(); //destroy old track / free resources
             nowplaying = t;
+        }
+
+        public void NextTrack()
+        {
+            bool flag = false;
+            foreach (ChartLoader.ChartGroup g in ChartLoader.Groups)
+            {
+                foreach (CachedChart c in g.charts)
+                {
+                    if (c.title == Game.CurrentChart.Data.Title && c.artist == Game.CurrentChart.Data.Artist && c.diffname == Game.CurrentChart.Data.DiffName)
+                    {
+                        flag = true;
+                    }
+                    else if (flag)
+                    {
+                        ChartLoader.SwitchToChart(c, false);
+                        return;
+                    }
+                }
+            }
         }
 
         public void PlaySFX(string name, float pitch = 1f, float volume = 1f)
