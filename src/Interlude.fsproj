@@ -131,10 +131,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\externs\Interlude.Web\shared\Interlude.Web.Shared.fsproj" />
-    <ProjectReference Include="..\externs\Percyqaz.Flux\src\Percyqaz.Flux.fsproj" />
-    <ProjectReference Include="..\externs\Percyqaz.Shell\src\Percyqaz.Shell.fsproj" />
-    <ProjectReference Include="..\externs\Prelude\src\Prelude.fsproj" />
+    <ProjectReference Include="..\..\Interlude.Web\shared\Interlude.Web.Shared.fsproj" />
+    <ProjectReference Include="..\..\Percyqaz.Flux\src\Percyqaz.Flux.fsproj" />
+    <ProjectReference Include="..\..\Percyqaz.Shell\src\Percyqaz.Shell.fsproj" />
+    <ProjectReference Include="..\..\Prelude\src\Prelude.fsproj" />
   </ItemGroup>
 	
 </Project>
