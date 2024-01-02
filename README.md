@@ -1,3 +1,8 @@
+> [!WARNING]
+> This repository has moved! Please go to [the new monorepo](https://github.com/YAVSRG/YAVSRG) to see the latest changes
+
+----
+
 <img src="https://user-images.githubusercontent.com/21290233/165412641-5f857e96-901b-48dc-867e-e509ca123a3b.png" align="left">
   
 # **YAVSRG :: Interlude**
